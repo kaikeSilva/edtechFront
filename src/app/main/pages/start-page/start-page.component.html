@@ -1,0 +1,29 @@
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card-button {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+        padding: 50px;
+        background-color: red;
+    }
+
+</style>
+<div class="container">
+    <div (click)="navigateCourses()" class="card-button">
+        cursos
+    </div>
+
+    <div (click)="navigateQuiz()" class="card-button">
+        quiz
+    </div>
+</div>

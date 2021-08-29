@@ -1,0 +1,186 @@
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card-button {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+        background-color: red;
+        padding: 25px;
+    }
+
+    .border {
+        border: 1px solid red;
+    }
+
+    ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    ul > li {
+        display: inline-block;
+        zoom:1;
+        *display:inline;
+        padding: 5px 8px;
+        border: 1px solid rgb(238, 233, 233);
+        margin: 2px;
+        border-radius: 5px;
+    }
+
+    .full-width {
+        width: 100%;
+    }
+    
+    .w-25 {
+        width: 25%;
+    }
+    
+    .w-50 {
+        width: 50%;
+    }
+    
+    .w-100 {
+        width: 100%;
+    }
+
+    button, input, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        outline: none;
+        border: none;
+    }
+
+    .filter-search {
+        border-bottom: 1px solid red;
+        padding: 10px 5px;
+        margin-top: 15px;
+        margin-bottom: 24px;
+        width: 80%;
+    }
+    
+    .filter-search:focus {
+        border-bottom: 3px solid red;
+        transition: border-bottom .200ms;
+    }
+
+    .btn-full-width {
+        color: white;
+        background-color: rgb(219, 52, 52);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .btn-full-width:hover {
+        cursor: pointer;
+        background-color: red;
+        transition: background-color .500ms;
+    }
+
+    .btn-spacing {
+        margin: 10px;
+        font-size: 2.2rem;
+        padding: 25px;
+    }
+    
+    .btn-half-width {
+        margin-right: 5px;
+        color: red;
+        background-color: white;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    
+    .btn-half-width:hover {
+        color: white;
+        cursor: pointer;
+        background-color: rgb(219, 52, 52);
+        transition: background-color .500ms;
+    }
+
+    .filter-number {
+        float: right;
+        position: absolute;
+    }
+
+    .jc-space-between {
+        justify-content: space-between;
+    }
+    
+    .jc-start {
+        justify-content: start;
+    }
+
+    .tab-bar-butons {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 150px;
+        color: white;
+        border-left: 5px solid rgb(211, 16, 16);
+        background-color: rgb(219, 52, 52);
+    }
+
+    .tab-bar-butons:last-child {
+        border-right: 5px solid rgb(211, 16, 16);
+    }
+    
+    .tab-bar-butons:hover {
+        cursor: pointer;
+        background-color: rgb(211, 16, 16);
+        transition: background-color .500ms;
+    }
+
+    .tab-bar {
+        background-color: rgb(219, 52, 52);
+    }
+
+    .selected-tab {
+        background-color: rgb(211, 16, 16);
+    }
+
+</style>
+<div class="content">
+    <div class="border content full-width">
+        <div class="w-50" >
+            <input #filter
+            class="filter-search"
+            (keyup.enter)="addFilter(filter.value); filter.value='' "
+            (blur)="addFilter(filter.value); filter.value='' ">
+      
+            <button class="btn-half-width" *ngIf="numberOfFilters > 0" (click)="toggleShowFilters()">+{{numberOfFilters}}</button>
+            <button class="btn-full-width" (click)="addFilter(filter.value); filter.value='' ">add</button>
+        </div>
+    
+        <ul #filtersList *ngIf="showFilters">
+            <li *ngFor="let filter of filters; let i = index">
+                <div (click)="changeClass(1)" >  {{filter}}  <span> <button (click)="deletarFiltro(filter)">x</button> </span>  </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container jc-start full-width tab-bar">
+        <button #buttonSearch id="criar-button" class="tab-bar-butons" (click)="openTab('criar-content')">Criar</button>
+        <button id="gerir-button" class="tab-bar-butons" (click)="openTab('gerir-content')">Gerir</button>
+        <button id="desenvolver-button" class="tab-bar-butons" (click)="openTab('desenvolver-content')">Desenvolver</button>
+    </div>
+
+    <div *ngFor="let classCourse of classesCourses" id="{{classCourse.classe}}-content" class="full-width classes">
+        <button *ngFor="let course of classCourse.cursos"  class="btn-full-width btn-spacing">{{course.nome}}</button>
+    </div>
+
+</div>
