@@ -7,17 +7,16 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class CoursesPageComponent implements OnInit {
 
-  constructor() { }
   classe: number = 0;
   showFilters: boolean = false;
   numberOfFilters: number = 0;
   selectedId: string = "criar";
   classes = ["Criar", "Gerir", "Desenvolver"]
-  filters = []
-
+  filters: string[] = []
+  
   @ViewChild('buttonSearch')
-  private button: ElementRef;
-
+  private button!: ElementRef;
+  
   classesCourses = [
     {
       classe: "criar",
@@ -109,10 +108,11 @@ export class CoursesPageComponent implements OnInit {
       ]
     }
   ]
+  constructor(private elem: ElementRef) { }
   
   ngOnInit(): void {
   }
-
+  
   ngAfterContentInit() {
     setTimeout(() => {
       let event = new Event('click')
@@ -124,7 +124,7 @@ export class CoursesPageComponent implements OnInit {
     this.classe = value
   }
   
-  addFilter(filterValue: string ) {
+  addFilter(filterValue: string) {
     if (filterValue) {
       this.filters.push(filterValue)
       this.numberOfFilters = this.filters.length
@@ -142,7 +142,7 @@ export class CoursesPageComponent implements OnInit {
 
   openTab(id: string) {
     var i;
-    var x = document.getElementsByClassName("classes");
+    var x = this.elem.nativeElement.querySelectorAll('.classes');
     var y = document.getElementsByClassName("tab-bar-butons");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
@@ -153,7 +153,7 @@ export class CoursesPageComponent implements OnInit {
     let button = document.getElementById(id.split('-')[0]+"-button"); 
     if (tab) {
       tab.style.display = "block"
-      button.classList.toggle('selected-tab')
+      button?.classList.toggle('selected-tab')
     }
   }
 
