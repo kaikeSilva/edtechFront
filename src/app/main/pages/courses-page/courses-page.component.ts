@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-page',
@@ -108,7 +109,10 @@ export class CoursesPageComponent implements OnInit {
       ]
     }
   ]
-  constructor(private elem: ElementRef) { }
+  constructor(
+    private elem: ElementRef,
+    private router: Router,
+  ) { }
   
   ngOnInit(): void {
   }
@@ -156,5 +160,10 @@ export class CoursesPageComponent implements OnInit {
       button?.classList.toggle('selected-tab')
     }
   }
+
+  navigateToCourse(courseName: string) {
+    console.log(courseName);
+    this.router.navigate(['/course-details', {course: courseName}])
+  } 
 
 }

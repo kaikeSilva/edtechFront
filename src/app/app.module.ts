@@ -7,12 +7,14 @@ import { Routes } from '@angular/router';
 import { StartPageComponent } from './main/pages/start-page/start-page.component';
 import { CoursesPageComponent } from './main/pages/courses-page/courses-page.component';
 import { QuizComponent } from './main/pages/quiz/quiz.component';
+import { CourseDetailsComponent } from './main/pages/course-details/course-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesPageComponent,
-    QuizComponent
+    QuizComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

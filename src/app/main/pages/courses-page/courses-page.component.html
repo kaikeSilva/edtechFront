@@ -1,8 +1,10 @@
 <style>
     :root {
-        --main-bg-color: pink;
+        --rosa-escuro: #E6324B;
+        --rosa-claro: #F2E3C6;
+        --cinza-fundo: #353634;
     }
-    
+
     .content {
         display: flex;
         flex-direction: column;
@@ -184,7 +186,7 @@
     </div>
 
     <div *ngFor="let classCourse of classesCourses" id="{{classCourse.classe}}-content" class="full-width classes">
-        <button *ngFor="let course of classCourse.cursos"  class="btn-full-width btn-spacing">{{course.nome}}</button>
+        <button *ngFor="let course of classCourse.cursos"  class="btn-full-width btn-spacing" (click)="navigateToCourse(course.nome)">{{course.nome}}</button>
     </div>
 
 </div>
